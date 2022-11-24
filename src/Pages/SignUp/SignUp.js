@@ -1,7 +1,7 @@
 import React from 'react';
-import banner from '../../assets/images/banners/login-banner.jpg';
+import banner from '../../assets/images/banners/signup-banner.jpg';
 
-const Login = () => {
+const SignUp = () => {
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>
             <div className="hero-overlay bg-opacity-60"></div>
@@ -53,4 +53,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
