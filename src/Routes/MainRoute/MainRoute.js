@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
+import Category from "../../Pages/Category/Category";
+import Cars from "../../Pages/Home/Cars/Cars";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
@@ -22,6 +24,16 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/category/:id',
+                element: <Category></Category>,
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+            },
+            {
+                path: '/cars/:id',
+                element: <Cars></Cars>,
+                loader: ({ params }) => fetch(`http://localhost:5000/cars/${params.id}`)
             }
         ]
 
