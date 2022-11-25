@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
-    const [categories, setCategories] = useState([]);
+    const [cars, setCars] = useState([]);
     const { brandName, model, resellPrice, location } = selectCar;
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('http://localhost:5000/cars')
             .then(res => res.json())
-            .then(data => setCategories(data))
+            .then(data => setCars(data))
     }, [])
 
     const handleBooking = (event) => {
@@ -45,9 +45,6 @@ const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
                         <p className="text-md text-left text-gray-500">Price: ${resellPrice}</p>
                     </div>
 
-                    {/* <p className='flex flex-start my-6'>{location.city}, {location.street}, {location.houseNumber}, {location.flatNo}</p> */}
-
-
                     <form onSubmit={handleBooking}>
                         <input type="text" name='date' value={selectedDate} disabled className="input input-bordered input-primary w-full mt-5" />
 
@@ -58,9 +55,15 @@ const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
                         <input type="text" name='phone' placeholder="Enter Your Phone no" className="input input-bordered input-primary w-full mt-5" />
 
                         <select name='option' className="select select-primary w-full max-w-xs mt-5">
-                            <option disabled selected>Select Your Car Type</option>
+                            <option disabled selected>Select Meeting Location</option>
                             {
-                                categories.map(ctg => <option value={ctg.id}>{ctg.name}</option>)
+                                cars.map(carData => <option
+                                    value={carData.id}>
+                                    {carData.location.city},
+                                    {carData.location.street},
+                                    {carData.location.houseNumber},
+                                    {carData.location.flatNo}
+                                </option>)
                             }
                         </select>
 
