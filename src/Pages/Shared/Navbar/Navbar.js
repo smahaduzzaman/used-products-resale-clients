@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log('User logged out');
+                toast('User logged out', {
+                    type: 'success'
+                })
+            })
+            .catch(err => {
+                console.log(err);
+                toast(err.message, {
+                    type: 'error'
+                })
+            })
+    }
+
 
     const listItems = <>
         <li><Link to="/blogs">FAQ's</Link></li>
@@ -10,7 +30,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 p-10">
+        <div className="navbar bg-base-100 px-10 py-7">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -48,6 +68,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                {
+                    user?.uid ? <button onClick={handleLogOut} className="btn btn-ghost normal-case">Logout</button> : <Link to="/login" className="btn btn-ghost normal-case">Login</Link>
+
+                }
                 <Link to="/" className="btn">Get started</Link>
             </div>
         </div>

@@ -1,27 +1,64 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import banner from '../../assets/images/banners/signup-banner.jpg';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
+    const [signUpError, setSignUpError] = useState('');
+    const { createUser } = useContext(AuthContext);
+
+    const handleSignUp = (event) => {
+        event.preventDefault();
+        setSignUpError('');
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const phone = event.target.phone.value;
+        const password = event.target.password.value;
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Created Successfully');
+            })
+            .catch(error => {
+                toast.error(error.message);
+                console.log(error.message);
+                setSignUpError(error.message);
+            })
+    }
+
+
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>
             <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content text-center text-neutral-content">
+            <div className="hero-content text-center text-neutral-content w-2/3">
                 <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
-                    <h1 className="text-2xl font-bold text-center">Login</h1>
-                    <form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                    <h1 className="text-2xl font-bold text-center">Sign Up</h1>
+                    <form onSubmit={handleSignUp} novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                         <div className="space-y-1 text-sm">
-                            <label for="username" className="block dark:text-gray-400">Username</label>
-                            <input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="text" name="name" id="name" placeholder="Enter Your Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <label for="password" className="block dark:text-gray-400">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
-                            <div className="flex justify-end text-xs dark:text-gray-400">
-                                <a rel="noopener noreferrer" href="#">Forgot Password?</a>
-                            </div>
+                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
                         </div>
-                        <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign in</button>
+                        <div className="space-y-1 text-sm">
+                            <input type="phone" name="phone" id="phone" placeholder="Enter Phone No" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
+                        </div>
+                        <div className="space-y-1 text-sm">
+                            <input type="password" name="password" id="password" placeholder="Create a Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
+                        </div>
+                        <div>
+                            {
+                                signUpError && <p className="text-red-500 text-sm">{signUpError}</p>
+                            }
+                        </div>
+                        <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign Up</button>
                     </form>
+                    <p className="text-xs text-center sm:px-6 dark:text-gray-400">Already have an account?
+                        <Link to="/login" rel="noopener noreferrer" href="#" className="underline dark:text-gray-100 ml-3">Login</Link>
+                    </p>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
                         <p className="px-3 text-sm dark:text-gray-400">Login with social accounts</p>
@@ -44,9 +81,6 @@ const SignUp = () => {
                             </svg>
                         </button>
                     </div>
-                    <p className="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
-                        <a rel="noopener noreferrer" href="#" className="underline dark:text-gray-100">Sign up</a>
-                    </p>
                 </div>
             </div>
         </div>

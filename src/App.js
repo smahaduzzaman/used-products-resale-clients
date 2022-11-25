@@ -1,6 +1,8 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './Routes/MainRoute/MainRoute';
 import './App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App({ children }) {
   return (
@@ -8,6 +10,9 @@ function App({ children }) {
       <RouterProvider router={router}>
         {children}
       </RouterProvider>
+      <ToastContainer
+        position="top-center"
+      />
     </div>
   );
 }
