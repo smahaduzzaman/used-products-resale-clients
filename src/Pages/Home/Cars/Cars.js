@@ -1,23 +1,36 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 import BookingModal from './BookingModal';
 import Car from './Car';
 
 const Cars = () => {
-    const [cars, setCars] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectCar, setSelectCar] = useState(null);
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [bookingDate, setBookingDate] = useState(new Date());
+
+    const { data: cars = [], refetch, isLoading } = useQuery({
+        queryKey: 'cars',
+        queryFn: async () => {
+            const { data } = await axios.get(`http://localhost:5000/cars`);
+            return data;
+        }
+    });
 
     useEffect(() => {
-        axios.get('http://localhost:5000/cars')
-            .then(res => setCars(res.data))
+        fetch('http://localhost:5000/category')
+            .then(res => res.json())
+            .then(data => setCategories(data))
     }, [])
-    useEffect(() => {
-        axios.get('http://localhost:5000/categories')
-            .then(res => setCategories(res.data))
-    }, [])
+
+
+    if (isLoading) {
+        return <Loading></Loading>;
+    }
+
+
     return (
         <section className="py-8 dark:bg-gray-800 dark:text-gray-100">
             <div className="container mx-auto">
@@ -28,17 +41,17 @@ const Cars = () => {
                 <div className="grid grid-cols-5 p-4 md:p-8">
                     <div className="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start">
                         {
-                            categories.map(ctg => <Link to={`/category/${ctg.id}`} className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400">{ctg.name}</Link>)
+                            categories.map(ctg => <Link to={`/category/${ctg._id}`} className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400">{ctg.name}</Link>)
                         }
                     </div>
                     <div className="grid gap-12 py-4 text-center sm:grid-cols-1 col-span-full md:col-span-4 md:text-left">
                         <h2>Total Cars: {cars.length}</h2>
                         {
                             cars.slice(0, 3).map((car) => <Car
-                                key={car.id}
+                                key={car._id}
                                 car={car}
                                 setSelectCar={setSelectCar}
-                                setSelectedDate={setSelectedDate}
+                                setBookingDate={setBookingDate}
                             ></Car>)
                         }
                     </div>
@@ -48,8 +61,10 @@ const Cars = () => {
                 selectCar &&
                 <BookingModal
                     selectCar={selectCar}
-                    selectedDate={selectedDate}
                     setSelectCar={setSelectCar}
+                    bookingDate={bookingDate}
+                    setBookingDate={setBookingDate}
+                    refetch={refetch}
                 ></BookingModal>
             }
         </section>

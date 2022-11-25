@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
-const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
+const BookingModal = ({ selectCar, setSelectCar, bookingDate, setBookingDate, refetch }) => {
     const [cars, setCars] = useState([]);
     const { brandName, model, resellPrice, location } = selectCar;
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         fetch('http://localhost:5000/cars')
@@ -12,24 +15,45 @@ const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
 
     const handleBooking = (event) => {
         event.preventDefault();
-        const bookingInfo = { ...selectCar, selectedDate };
         const name = event.target.name.value;
         const email = event.target.email.value;
         const phone = event.target.phone.value;
         const option = event.target.option.value;
+        console.log(name, email, phone, option);
 
-        console.log(name, email, phone, bookingInfo, option);
+        const orders = {
+            name,
+            email,
+            phone,
+            brandName,
+            model,
+            resellPrice,
+            location,
+            option,
+            bookingDate
+        }
 
-        // const bookingDetails = {
-        //     name,
-        //     email,
-        //     phone,
-        //     bookingInfo,
-        //     option
-        // };
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orders)
 
-        setSelectCar(null);
-
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    toast.success('Your order has been placed successfully');
+                    setSelectCar(null);
+                    setBookingDate(null);
+                    refetch();
+                }
+            })
+            .catch(err => {
+                toast.error('Something went wrong');
+            })
     }
 
     return (
@@ -46,11 +70,11 @@ const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
                     </div>
 
                     <form onSubmit={handleBooking}>
-                        <input type="text" name='date' value={selectedDate} disabled className="input input-bordered input-primary w-full mt-5" />
+                        <input type="text" name='date' value={bookingDate} disabled className="input input-bordered input-primary w-full mt-5" />
 
-                        <input type="text" name='name' placeholder="Enter Name" className="input input-bordered input-primary w-full mt-5" />
+                        <input type="text" name='name' defaultValue={user?.displayName} placeholder="Enter Name" className="input input-bordered input-primary w-full mt-5" />
 
-                        <input type="email" name='email' placeholder="Enter Email" className="input input-bordered input-primary w-full mt-5" />
+                        <input type="email" name='email' defaultValue={user?.email} disabled placeholder="Enter Email" className="input input-bordered input-primary w-full mt-5" />
 
                         <input type="text" name='phone' placeholder="Enter Your Phone no" className="input input-bordered input-primary w-full mt-5" />
 
@@ -66,7 +90,6 @@ const BookingModal = ({ selectCar, setSelectCar, selectedDate }) => {
                                 </option>)
                             }
                         </select>
-
                         <input type="submit" className="input input-bordered input-primary w-full mt-5 text-white bg-indigo-500 focus:outline-none hover:bg-indigo-600 rounded" value="SUBMIT" />
                     </form>
                 </div>

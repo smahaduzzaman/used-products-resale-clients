@@ -5,14 +5,27 @@ import Car from '../Home/Cars/Car';
 import CatCar from './CatCar';
 
 const Category = () => {
-    const allCars = useLoaderData();
+    const cars = useLoaderData();
+    console.log(cars);
+
+    // const [cars, setCars] = useState([]);
+    // const [category, setCategory] = useState([]);
+    // useEffect(() => {
+    //     axios.get('http://localhost:5000/cars')
+    //         .then(res => setCars(res.data))
+    //     axios.get('http://localhost:5000/category')
+    //         .then(res => setCategory(res.data))
+    // }, [])
 
     return (
         <div>
-            <h2>Total of this Cars: {allCars.length}</h2>
-            {
-                allCars.map(car => <CatCar key={car.id} car={car}></CatCar>)
-            }
+            <h2>Total of this Cars: {cars.length}</h2>
+            {/* {
+                cars?.map(car => <CatCar
+                    key={car._id}
+                    car={car}
+                ></CatCar>)
+            } */}
         </div>
     );
 };

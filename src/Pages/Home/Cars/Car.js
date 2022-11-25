@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Car = ({ car, setSelectCar }) => {
+const Car = ({ car, setSelectCar, setBookingDate }) => {
 
-    const { name, price, image, brandName, model, description } = car;
+    const { name, price, image, brandName, model, description, publishingDate } = car;
     return (
         <section className="text-gray-600 body-font overflow-hidden">
             <div className="container px-5 py-24 mx-auto">
