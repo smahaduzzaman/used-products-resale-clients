@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import Category from "../../Pages/Category/Category";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Cars from "../../Pages/Home/Cars/Cars";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from "../PriveateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
             }
         ]
 
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     }
 ])
 

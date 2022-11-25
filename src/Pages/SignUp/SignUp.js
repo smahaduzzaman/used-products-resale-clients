@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import banner from '../../assets/images/banners/signup-banner.jpg';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const [signUpError, setSignUpError] = useState('');
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSignUp = (event) => {
         event.preventDefault();
@@ -21,6 +25,21 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('User Created Successfully');
+
+                const userInfo = {
+                    displayName: name,
+                }
+
+                updateUser(user.uid, userInfo)
+                    .then(result => {
+                        console.log(result);
+                        toast.success('User Info Updated Successfully');
+                        navigate(from, { replace: true });
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                        toast.error(error.message);
+                    })
             })
             .catch(error => {
                 toast.error(error.message);
@@ -38,16 +57,16 @@ const SignUp = () => {
                     <h1 className="text-2xl font-bold text-center">Sign Up</h1>
                     <form onSubmit={handleSignUp} novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                         <div className="space-y-1 text-sm">
-                            <input type="text" name="name" id="name" placeholder="Enter Your Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
+                            <input type="text" name="name" id="name" placeholder="Enter Your Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
+                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="phone" name="phone" id="phone" placeholder="Enter Phone No" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
+                            <input type="phone" name="phone" id="phone" placeholder="Enter Phone No" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="password" name="password" id="password" placeholder="Create a Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-600 focus:dark:border-violet-400" />
+                            <input type="password" name="password" id="password" placeholder="Create a Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>
                         <div>
                             {

@@ -69,10 +69,24 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user?.uid ? <button onClick={handleLogOut} className="btn btn-ghost normal-case">Logout</button> : <Link to="/login" className="btn btn-ghost normal-case">Login</Link>
+                    user?.uid ?
+                        <>
+                            <Link to="/dashboard" className="btn btn-ghost normal-case">Dashboard</Link>
+                            <button onClick={handleLogOut} className="btn btn-ghost normal-case">Logout</button>
+                        </>
+                        :
+                        <Link to="/login" className="btn btn-ghost normal-case">Login</Link>
 
                 }
-                <Link to="/" className="btn">Get started</Link>
+                <Link to="/" className="btn"><input type="checkbox" className="toggle toggle-primary" checked /></Link>
+                {/* <input type="checkbox" className="toggle toggle-primary" checked />
+                <div className="flex flex-col">
+                    <div className="form-control w-52">
+                        <label className="cursor-pointer label">
+                            <input type="checkbox" className="toggle toggle-primary" checked />
+                        </label>
+                    </div>
+                </div> */}
             </div>
         </div>
     );

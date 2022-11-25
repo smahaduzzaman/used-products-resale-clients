@@ -12,6 +12,7 @@ function App({ children }) {
       </RouterProvider>
       <ToastContainer
         position="top-center"
+        autoClose={3000}
       />
     </div>
   );
