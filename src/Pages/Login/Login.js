@@ -3,14 +3,21 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import banner from '../../assets/images/banners/login-banner.jpg';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
-    const [loginError, setLoginError] = useState('');
     const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -24,6 +31,7 @@ const Login = () => {
             .then(result => {
                 toast.success('User Logged In Successfully');
                 console.log(result.user);
+                setLoginUserEmail(email);
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -38,6 +46,7 @@ const Login = () => {
             .then(result => {
                 toast.success('User Logged In Successfully');
                 console.log(result.user);
+                setLoginUserEmail(result.user.email);
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -60,7 +69,6 @@ const Login = () => {
                 setLoginError(error.message);
             })
     }
-
 
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>

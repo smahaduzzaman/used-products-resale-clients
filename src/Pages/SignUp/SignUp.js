@@ -3,14 +3,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import banner from '../../assets/images/banners/signup-banner.jpg';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const [signUpError, setSignUpError] = useState('');
     const { createUser, updateUser } = useContext(AuthContext);
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleSignUp = (event) => {
         event.preventDefault();
@@ -25,16 +31,12 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('User Created Successfully');
-
                 const userInfo = {
-                    displayName: name,
+                    name
                 }
-
-                updateUser(user.uid, userInfo)
+                updateUser(userInfo)
                     .then(result => {
-                        console.log(result);
-                        toast.success('User Info Updated Successfully');
-                        saveUserToDatabase(name, email, phone);
+                        saveUserToDatabase(name, email);
                     })
                     .catch(error => {
                         console.log(error.message);
@@ -48,13 +50,8 @@ const SignUp = () => {
             })
     }
 
-    const saveUserToDatabase = (name, email, phone) => {
-        const user = {
-            name: name,
-            email: email,
-            phone: phone,
-        }
-
+    const saveUserToDatabase = (name, email) => {
+        const user = { name, email };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -64,11 +61,11 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 toast.success('User Saved to Database');
-                navigate(from);
+                setCreatedUserEmail(email);
             })
     }
+
 
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>

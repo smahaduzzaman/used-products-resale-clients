@@ -50,7 +50,7 @@ const Navbar = () => {
                         <li><Link to="/blog">Blog</Link></li>
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl">Xclusive Cars</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-3xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
