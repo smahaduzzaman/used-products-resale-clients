@@ -78,16 +78,19 @@ const Navbar = () => {
                         <Link to="/login" className="btn btn-ghost normal-case">Login</Link>
 
                 }
-                <Link to="/" className="btn"><input type="checkbox" className="toggle toggle-primary" checked /></Link>
-                {/* <input type="checkbox" className="toggle toggle-primary" checked />
+                <Link to="/" className="btn"><input type="checkbox" className="toggle toggle-primary" /></Link>
+                {/* <input type="checkbox" className="toggle toggle-primary"  />
                 <div className="flex flex-col">
                     <div className="form-control w-52">
                         <label className="cursor-pointer label">
-                            <input type="checkbox" className="toggle toggle-primary" checked />
+                            <input type="checkbox" className="toggle toggle-primary"  />
                         </label>
                     </div>
                 </div> */}
             </div>
+            <label htmlFor="dashboard-drawer" tabIndex={4} className="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
         </div>
     );
 };

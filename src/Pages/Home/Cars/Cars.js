@@ -20,7 +20,7 @@ const Cars = () => {
     });
 
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
@@ -47,7 +47,7 @@ const Cars = () => {
                     <div className="grid gap-12 py-4 text-center sm:grid-cols-1 col-span-full md:col-span-4 md:text-left">
                         <h2>Total Cars: {cars.length}</h2>
                         {
-                            cars.slice(0, 3).map((car) => <Car
+                            cars.map((car) => <Car
                                 key={car._id}
                                 car={car}
                                 setSelectCar={setSelectCar}

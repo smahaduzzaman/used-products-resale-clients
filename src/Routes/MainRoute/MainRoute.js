@@ -1,9 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Category from "../../Pages/Category/Category";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import Cars from "../../Pages/Home/Cars/Cars";
 import Home from "../../Pages/Home/Home/Home";
+import ViewAllCars from "../../Pages/Home/ViewAllButton/ViewAllCars";
 import Login from "../../Pages/Login/Login";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import SignUp from "../../Pages/SignUp/SignUp";
@@ -36,13 +39,23 @@ const router = createBrowserRouter([
                 path: '/cars/:id',
                 element: <Cars></Cars>,
                 loader: ({ params }) => fetch(`http://localhost:5000/cars/${params.id}`)
+            },
+            {
+                path: '/viewallcars',
+                element: <ViewAllCars></ViewAllCars>,
             }
         ]
 
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyOrders></MyOrders>
+            }
+        ]
     }
 ])
 

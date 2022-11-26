@@ -5,6 +5,7 @@ import OurSellers from '../OurSellers/OurSellers';
 import PopulerBrands from '../PopulerBrands/PopulerBrands';
 import Advertisements from '../Advertisements/Advertisements';
 import Gallery from '../Gallery/Gallery';
+import ViewAllButton from '../ViewAllButton/ViewAllButton';
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <Advertisements></Advertisements>
             <Hero></Hero>
             <Cars></Cars>
+            <ViewAllButton></ViewAllButton>
             <OurSellers></OurSellers>
             <Gallery></Gallery>
             <PopulerBrands></PopulerBrands>

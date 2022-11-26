@@ -34,7 +34,7 @@ const SignUp = () => {
                     .then(result => {
                         console.log(result);
                         toast.success('User Info Updated Successfully');
-                        navigate(from, { replace: true });
+                        saveUserToDatabase(name, email, phone);
                     })
                     .catch(error => {
                         console.log(error.message);
@@ -48,6 +48,27 @@ const SignUp = () => {
             })
     }
 
+    const saveUserToDatabase = (name, email, phone) => {
+        const user = {
+            name: name,
+            email: email,
+            phone: phone,
+        }
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('User Saved to Database');
+                navigate(from);
+            })
+    }
 
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>

@@ -52,7 +52,7 @@ const BookingModal = ({ selectCar, setSelectCar, bookingDate, setBookingDate, re
                 }
             })
             .catch(err => {
-                toast.error('Something went wrong');
+                toast.error('Already Booked this Car');
             })
     }
 
