@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
@@ -12,13 +13,18 @@ const AllUsers = () => {
     });
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/makeAdmin/${id}`, {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('token')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                refetch();
+                if (data.modifiedCount > 0) {
+                    toast('Admin added successfully');
+                    refetch();
+                }
             })
     }
 

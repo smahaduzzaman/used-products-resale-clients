@@ -46,6 +46,7 @@ const BookingModal = ({ selectCar, setSelectCar, bookingDate, setBookingDate, re
                 console.log(data);
                 if (data.insertedId) {
                     toast.success('Your order has been placed successfully');
+                    // setSelectCar({});
                     setSelectCar(null);
                     setBookingDate(null);
                     refetch();

@@ -30,7 +30,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 px-10 py-7">
+        <div className="navbar bg-base-100 px-10 py-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -50,7 +50,7 @@ const Navbar = () => {
                         <li><Link to="/blog">Blog</Link></li>
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-3xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-2xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -75,19 +75,15 @@ const Navbar = () => {
                             <button onClick={handleLogOut} className="btn btn-ghost normal-case">Logout</button>
                         </>
                         :
-                        <Link to="/login" className="btn btn-ghost normal-case">Login</Link>
+                        <>
+                            <Link to="/login" className="btn btn-ghost normal-case">Login</Link>
+                            <Link to="/signup" className="btn btn-ghost normal-case">Sign Up</Link>
+                        </>
 
                 }
-                <Link to="/" className="btn"><input type="checkbox" className="toggle toggle-primary" /></Link>
-                {/* <input type="checkbox" className="toggle toggle-primary"  />
-                <div className="flex flex-col">
-                    <div className="form-control w-52">
-                        <label className="cursor-pointer label">
-                            <input type="checkbox" className="toggle toggle-primary"  />
-                        </label>
-                    </div>
-                </div> */}
+                <Link to="/"><input type="checkbox" className="toggle toggle-primary" /></Link>
             </div>
+
             <label htmlFor="dashboard-drawer" tabIndex={4} className="btn btn-ghost lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
