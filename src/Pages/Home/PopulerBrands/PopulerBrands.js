@@ -2,9 +2,9 @@ import React from 'react';
 
 const PopulerBrands = () => {
     return (
-        <section className="dark:bg-gray-800 dark:text-gray-100">
+        <section className="dark:bg-gray-800 dark:text-gray-100 mt-32">
             <div className="container p-6 mx-auto space-y-6 text-center lg:p-8 lg:space-y-8">
-                <h2 className="text-3xl font-bold">Fully compatible with</h2>
+                <h2 className="text-3xl font-bold">Top Rated Brands</h2>
                 <div className="flex flex-wrap justify-center lg:justify-between">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Angular" className="w-12 h-12 mx-10 my-6 fill-current md:mx-12 lg:m-0 dark:text-gray-400">
                         <title>Angular</title>

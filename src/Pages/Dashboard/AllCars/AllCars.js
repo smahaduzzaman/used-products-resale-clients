@@ -29,7 +29,7 @@ const AllCars = () => {
                                 <th>{index + 1}</th>
                                 <td>{car.brandName}</td>
                                 <td>{car.model}</td>
-                                <td>{car.resellPrice}</td>
+                                <td>${car.resellPrice}</td>
                                 <td>
                                     {
                                         car?.role === 'seller' && <p><span className="badge badge-warning">Pending</span></p>
