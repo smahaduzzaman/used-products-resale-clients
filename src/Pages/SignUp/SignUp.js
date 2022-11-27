@@ -24,6 +24,8 @@ const SignUp = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const phone = event.target.phone.value;
+        const role = event.target.role.value;
+        console.log(name, email, phone, role);
         const password = event.target.password.value;
 
         createUser(email, password)
@@ -36,7 +38,7 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(result => {
-                        saveUserToDatabase(name, email);
+                        saveUserToDatabase(name, email, phone, role);
                     })
                     .catch(error => {
                         console.log(error.message);
@@ -50,8 +52,8 @@ const SignUp = () => {
             })
     }
 
-    const saveUserToDatabase = (name, email) => {
-        const user = { name, email };
+    const saveUserToDatabase = (name, email, phone, role) => {
+        const user = { name, email, phone, role };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -83,6 +85,17 @@ const SignUp = () => {
                         <div className="space-y-1 text-sm">
                             <input type="phone" name="phone" id="phone" placeholder="Enter Phone No" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>
+                        <select
+                            name="role"
+                            className="select select-bordered w-full max-w-xs">
+                            <option disabled selected>Select a User type</option>
+                            <option
+                                value="buyer"
+                            >Buyer</option>
+                            <option
+                                value="seller"
+                            >Seller</option>
+                        </select>
                         <div className="space-y-1 text-sm">
                             <input type="password" name="password" id="password" placeholder="Create a Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                         </div>

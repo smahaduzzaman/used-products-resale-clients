@@ -7,8 +7,8 @@ const Hero = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
-                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-200">Knausgaard typewriter readymade marfa</h1>
-                    <p class="mb-8 leading-relaxed">Kickstarter biodiesel roof party wayfarers cold-pressed. Palo santo live-edge tumeric scenester copper mug flexitarian. Prism vice offal plaid everyday carry. Gluten-free chia VHS squid listicle artisan.</p>
+                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-200">Welcome to <span className='text-5xl text-indigo-600'>Xclusive Cars</span></h1>
+                    <p class="mb-8 leading-relaxed">XclusiveCars.com is a leading digital reseller marketplace provider for the automotive industry that connects car shoppers with sellers. Launched in 1998 and headquartered in Chicago, the Company empowers shoppers with the data, resources and digital tools needed to make informed buying decisions and seamlessly connect with automotive retailers.</p>
                     <div class="flex w-full justify-center items-end">
                         <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
                             <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label>

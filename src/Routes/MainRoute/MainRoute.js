@@ -4,6 +4,9 @@ import Main from "../../Layout/Main";
 import Category from "../../Pages/Category/Category";
 import Contacts from "../../Pages/Contacts/Contacts";
 import AddCar from "../../Pages/Dashboard/AddCar/AddCar";
+import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
+import AllCars from "../../Pages/Dashboard/AllCars/AllCars";
+import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
@@ -65,12 +68,26 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allusers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
-                // element: <AllUsers></AllUsers>
+            },
+            {
+                path: '/dashboard/allbuyers',
+                element: <AllBuyers></AllBuyers>
+                // element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>,
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <AllSellers></AllSellers>
+                // element: <AdminRoute><AllSellers></AllSellers></AdminRoute>,
+            },
+            {
+                path: '/dashboard/allcars',
+                element: <AllCars></AllCars>
+                // element: <AdminRoute><AllSellers></AllSellers></AdminRoute>,
             },
             {
                 path: '/dashboard/addcar',
-                // element: <AddCar></AddCar>
-                element: <AdminRoute><AddCar></AddCar></AdminRoute>
+                element: <AddCar></AddCar>
+                // element: <AdminRoute><AddCar></AddCar></AdminRoute>
             },
             {
                 path: '/dashboard/payment/:id',
