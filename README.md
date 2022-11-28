@@ -5,10 +5,12 @@ Site Name: Xclusive Cars
 - GitHub Server Repo: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-smahaduzzaman
 
 Admin Info:
+
 Admin: 1
 - name: wecinab428
 - adminEmail: wecinab428@kuvasin.com
 - adminPassword: 123456
+
 Admin: 2
 - name: xocese9565
 - adminEmail: xocese9565@rubeshi.com
