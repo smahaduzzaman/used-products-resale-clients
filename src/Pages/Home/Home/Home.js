@@ -11,8 +11,8 @@ import ViewAllButton from '../ViewAllButton/ViewAllButton';
 const Home = () => {
     return (
         <div>
-            <Advertisements></Advertisements>
             <Hero></Hero>
+            <Advertisements></Advertisements>
             <Cars></Cars>
             <ViewAllButton></ViewAllButton>
             <OurSellers></OurSellers>

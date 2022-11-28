@@ -8,21 +8,28 @@ const AllCars = () => {
             .then(data => setAllCars(data))
     }, [])
 
-    const handleMakeAds = (id) => {
-        fetch(`http://localhost:5000/cars/makeads/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('token')}`
+    const handleMakeAds = (
+        brandName,
+        model,
+        resellPrice
+    ) => {
 
-            },
-            body: JSON.stringify({ isAds: true })
+
+        fetch('http://localhost:5000/ads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                brandName, model, resellPrice
+            })
         })
             .then(res => res.json())
             .then(data => {
                 if (data) {
-                    alert('Successfully made ads');
+                    alert('Your Ad is created successfully');
                 }
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
 
@@ -58,7 +65,9 @@ const AllCars = () => {
                                     }
                                 </td>
                                 <td>
-                                    <button onClick={handleMakeAds} className='btn btn-sm btn-primary'>Make Ads</button>
+                                    <button onClick={() => handleMakeAds(
+                                        car.brandName, car.model, car.resellPrice
+                                    )} className='btn btn-sm btn-primary'>Make Ads</button>
                                     <button className='btn btn-sm btn-danger ml-2'>Delete</button>
                                 </td>
                             </tr>)

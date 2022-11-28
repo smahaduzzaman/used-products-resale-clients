@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Advertisement from './Advertisement';
 
 const Advertisements = () => {
     const [advertisements, setAdvertisements] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/ads')
+            .then(res => res.json())
+            .then(data => setAdvertisements(data))
+    }, [])
+
     return (
-        <section>
+        <section className='flex flex-row justify-center my-10'>
             {
-                advertisements.map(advertisement => <Advertisement advertisement={advertisement}></Advertisement>)
+                advertisements.map(advertisement => <Advertisement
+                    key={advertisement._id}
+                    advertisement={advertisement}
+                ></Advertisement>)
             }
         </section>
     );
