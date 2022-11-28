@@ -30,7 +30,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100 px-10 py-5">
+        <div className="navbar bg-base-300 px-10 py-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -50,7 +50,7 @@ const Navbar = () => {
                         <li><Link to="/blog">Blog</Link></li>
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-2xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-sm lg:text-3xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -67,7 +67,7 @@ const Navbar = () => {
                     <li><Link to="/blog">Blog</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end flex flex-col lg:flex-row">
                 {
                     user?.uid ?
                         <>
@@ -81,7 +81,7 @@ const Navbar = () => {
                         </>
 
                 }
-                <Link to="/"><input type="checkbox" className="toggle toggle-primary" /></Link>
+                <Link to="/"><input type="checkbox" className="toggle toggle-primary hidden lg:block" /></Link>
             </div>
 
             <label htmlFor="dashboard-drawer" tabIndex={4} className="btn btn-ghost lg:hidden">

@@ -12,6 +12,7 @@ import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import WishList from "../../Pages/Dashboard/WishList/WishList";
 import Cars from "../../Pages/Home/Cars/Cars";
 import Home from "../../Pages/Home/Home/Home";
 import ViewAllCars from "../../Pages/Home/ViewAllButton/ViewAllCars";
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
                 element: <Payment></Payment>,
                 loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
             },
+            {
+                path: '/dashboard/wishlist',
+                element: <WishList></WishList>
+            }
         ]
     }
 ])

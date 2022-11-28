@@ -10,7 +10,7 @@ const Advertisements = () => {
     }, [])
 
     return (
-        <section className='flex flex-row justify-center my-10'>
+        <section className='flex flex-col md:flex-row justify-center my-10'>
             {
                 advertisements.map(advertisement => <Advertisement
                     key={advertisement._id}
