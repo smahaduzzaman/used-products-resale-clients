@@ -8,6 +8,24 @@ const AllCars = () => {
             .then(data => setAllCars(data))
     }, [])
 
+    const handleMakeAds = (id) => {
+        fetch(`http://localhost:5000/cars/makeads/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+
+            },
+            body: JSON.stringify({ isAds: true })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    alert('Successfully made ads');
+                }
+            })
+    }
+
     return (
         <div>
             <h2 className='text-2xl flex flex-start'>All Cars - <span className='text-indigo-600'>{allCars.length}</span></h2>
@@ -40,7 +58,7 @@ const AllCars = () => {
                                     }
                                 </td>
                                 <td>
-                                    <button className='btn btn-sm btn-primary'>Make Ads</button>
+                                    <button onClick={handleMakeAds} className='btn btn-sm btn-primary'>Make Ads</button>
                                     <button className='btn btn-sm btn-danger ml-2'>Delete</button>
                                 </td>
                             </tr>)

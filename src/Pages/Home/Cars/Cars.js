@@ -25,11 +25,15 @@ const Cars = () => {
             .then(data => setCategories(data))
     }, [])
 
+    // const handleCategoryCars = (id) => {
+    //     fetch(`http://localhost:5000/cars/category/${id}`)
+    //         .then(res => res.json())
+    //         .then(data => console.log(data))
+    // }
 
     if (isLoading) {
         return <Loading></Loading>;
     }
-
 
     return (
         <section className="py-8 dark:bg-gray-800 dark:text-gray-100">
