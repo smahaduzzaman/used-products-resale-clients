@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const AllBuyers = () => {
     const [buyers, setBuyers] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/buyers`)
+        axios.get(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/buyers`)
             .then(res => setBuyers(res.data))
     }, [])
     return (

@@ -50,7 +50,7 @@ const Navbar = () => {
                         <li><Link to="/blog">Blog</Link></li>
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-sm lg:text-3xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl lg:text-3xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -67,7 +67,7 @@ const Navbar = () => {
                     <li><Link to="/blog">Blog</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end flex flex-col lg:flex-row">
+            <div className="navbar-end flex flex-col lg:flex-row pl-16">
                 {
                     user?.uid ?
                         <>
@@ -83,10 +83,6 @@ const Navbar = () => {
                 }
                 <Link to="/"><input type="checkbox" className="toggle toggle-primary hidden lg:block" /></Link>
             </div>
-
-            <label htmlFor="dashboard-drawer" tabIndex={4} className="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </label>
         </div>
     );
 };

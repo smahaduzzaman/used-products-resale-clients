@@ -1,15 +1,42 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const WishList = () => {
     const [wishList, setWishList] = useState([]);
     const { brandName, model, resellPrice, description } = wishList;
 
     useEffect(() => {
-        fetch('http://localhost:5000/wishlist')
+        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist')
             .then(res => res.json())
             .then(data => setWishList(data))
     }, [])
+
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users');
+            const data = await res.json();
+            return data;
+        }
+    });
+
+    const handeDeleteWishList = (id) => {
+        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast('WishList deleted successfully');
+                    refetch();
+                }
+            })
+    }
 
     return (
         <div>
@@ -37,7 +64,7 @@ const WishList = () => {
                                 <td>
                                     {
                                         wish.resellPrice && !wish.paid && <Link to="">
-                                            <button className="btn btn-outline btn-primary">Delete</button>
+                                            <button onClick={() => handeDeleteWishList(wish._id)} className="btn btn-outline btn-primary">Delete</button>
                                         </Link>
                                     }
                                     {

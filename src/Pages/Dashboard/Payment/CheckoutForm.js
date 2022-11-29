@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
     const price = parseInt(resellPrice);
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/create-payment-intent`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const CheckoutForm = ({ order }) => {
                 orderId: order._id,
             }
 
-            fetch(`http://localhost:5000/payment`, {
+            fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/payment`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

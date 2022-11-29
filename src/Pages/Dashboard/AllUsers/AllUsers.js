@@ -6,14 +6,14 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users');
             const data = await res.json();
             return data;
         }
     });
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`
@@ -23,6 +23,22 @@ const AllUsers = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast('Admin added successfully');
+                    refetch();
+                }
+            })
+    }
+
+    const handleUserDelete = (id) => {
+        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast('User deleted successfully');
                     refetch();
                 }
             })
@@ -49,7 +65,7 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} class="btn btn-outline btn-primary">Make Admin</button>}</td>
-                                <td><button className="btn btn-outline btn-secondary">Delete</button></td>
+                                <td><button onClick={() => handleUserDelete(user._id)} className="btn btn-outline btn-secondary">Delete</button></td>
                             </tr>)
                         }
                     </tbody>

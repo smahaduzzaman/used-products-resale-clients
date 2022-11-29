@@ -8,7 +8,7 @@ const BookingModal = ({ selectCar, setSelectCar, bookingDate, setBookingDate, re
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/cars')
+        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars')
             .then(res => res.json())
             .then(data => setCars(data))
     }, [])
@@ -33,7 +33,7 @@ const BookingModal = ({ selectCar, setSelectCar, bookingDate, setBookingDate, re
             bookingDate
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

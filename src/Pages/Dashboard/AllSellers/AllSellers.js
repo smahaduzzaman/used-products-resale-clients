@@ -5,7 +5,7 @@ const AllBuyers = () => {
     const [sellers, setSellers] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/sellers`)
+        axios.get(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/sellers`)
             .then(res => setSellers(res.data))
     }, [])
 
