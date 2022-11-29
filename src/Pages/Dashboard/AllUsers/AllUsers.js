@@ -16,6 +16,7 @@ const AllUsers = () => {
         fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
+                'Content-Type': 'application/json',
                 authorization: `bearer ${localStorage.getItem('token')}`
             }
         })

@@ -12,6 +12,7 @@ import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import ReportedItems from "../../Pages/Dashboard/RepotedItems/ReportedItems";
 import WishList from "../../Pages/Dashboard/WishList/WishList";
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Category></Category>,
+                element: <PrivateRoute><Category></Category></PrivateRoute>,
                 loader: ({ params }) => fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category/${params.id}`)
             },
             {
@@ -67,33 +68,28 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
-        // element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
-                element: <MyOrders></MyOrders>
-                // element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
             {
                 path: '/dashboard/allusers',
-                element: <AllUsers></AllUsers>,
-                // element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
             },
             {
                 path: '/dashboard/allbuyers',
-                element: <AllBuyers></AllBuyers>,
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>,
             },
             {
                 path: '/dashboard/allsellers',
-                element: <AllSellers></AllSellers>
-                // element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/allcars',
-                element: <AllCars></AllCars>
-                // element: <SellerRoute><AllCars></AllCars></SellerRoute>
+                element: <AdminRoute><AllCars></AllCars></AdminRoute>
             },
             {
                 path: '/dashboard/addcar',
@@ -106,7 +102,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/wishlist',
-                element: <SellerRoute><WishList></WishList></SellerRoute>
+                element: <BuyerRoute><WishList></WishList></BuyerRoute>
             },
             {
                 path: '/dashboard/mybuyers',
@@ -115,6 +111,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/reporteditems',
                 element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             }
         ]
     }

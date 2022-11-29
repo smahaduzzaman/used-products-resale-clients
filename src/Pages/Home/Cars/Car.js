@@ -5,13 +5,11 @@ import { toast } from 'react-toastify';
 const Car = ({ car, setSelectCar, setBookingDate }) => {
     const { seller, resellPrice, image, brandName, model, description, publishingDate } = car;
 
-    const handleAddToWishlist = (brandName, model, resellPrice, description) => {
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist', {
+    const handleAddToWishlist = (car) => {
+        fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                brandName, model, resellPrice, description
-            })
+            body: JSON.stringify({ car })
         })
             .then(res => res.json())
             .then(data => {
@@ -24,6 +22,25 @@ const Car = ({ car, setSelectCar, setBookingDate }) => {
                 toast.error(err.message);
             })
     }
+
+    const handleAddToReportList = (car) => {
+        fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/reportlist', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ car })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    toast.success('Added to Reported Items successfully');
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                toast.error(err.message);
+            })
+    }
+
 
     return (
         <section className="text-gray-600 body-font overflow-hidden">
@@ -79,14 +96,10 @@ const Car = ({ car, setSelectCar, setBookingDate }) => {
                                 <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
                             </div>
                             <div className="flex ml-6 items-center">
-                                <span className="mr-3">Size</span>
+                                <span className="mr-3">Report</span>
                                 <div className="relative">
-                                    <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
-                                        <option>SM</option>
-                                        <option>ML</option>
-                                        <option>LX</option>
-                                        <option>XL</option>
-                                    </select>
+                                    <button onClick={() => handleAddToReportList(car)}
+                                        className="btn btn-sm">To Admin</button>
                                     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4" viewBox="0 0 24 24">
                                             <path d="M6 9l6 6 6-6"></path>
@@ -102,10 +115,8 @@ const Car = ({ car, setSelectCar, setBookingDate }) => {
                                 onClick={() => setSelectCar(car)}
                                 htmlFor="booking-modal"
                                 className="btn flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Order Now</label>
-
-                            <button onClick={() => handleAddToWishlist(
-                                brandName, model, resellPrice, description
-                            )} className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                            <button onClick={() => handleAddToWishlist(car)}
+                                className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                                 <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
                                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                                 </svg>
