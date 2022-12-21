@@ -54,7 +54,7 @@ const SignUp = () => {
 
     const saveUserToDatabase = (name, email, phone, role) => {
         const user = { name, email, phone, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

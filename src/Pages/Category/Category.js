@@ -7,17 +7,17 @@ const Category = () => {
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/cars')
+        axios.get('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars')
             .then(res => setCars(res.data))
-        axios.get('http://localhost:5000/category')
+        axios.get('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category')
             .then(res => setCategory(res.data))
     }, [])
 
     return (
         <div>
-            <h2>Total of this Cars: {cars.length}</h2>
+            <h2 className='text-3xl mt-5'>Our Super Exclusive Cars</h2>
             {
-                cars?.map(car => <CatCar
+                cars.slice(0, 2).map(car => <CatCar
                     key={car._id}
                     car={car}
                 ></CatCar>)

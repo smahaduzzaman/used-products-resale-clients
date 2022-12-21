@@ -49,12 +49,12 @@ const router = createBrowserRouter([
                 path: '/category/:id',
                 element: <Category></Category>,
                 // element: <PrivateRoute><Category></Category></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category/${params.id}`)
             },
             {
                 path: '/cars/:id',
                 element: <Cars></Cars>,
-                loader: ({ params }) => fetch(`http://localhost:5000/cars/${params.id}`)
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars/${params.id}`)
             },
             {
                 path: '/viewallcars',
@@ -102,7 +102,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/orders/${params.id}`)
             },
             {
                 path: '/dashboard/wishlist',

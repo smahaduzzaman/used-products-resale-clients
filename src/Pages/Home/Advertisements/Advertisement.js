@@ -5,7 +5,7 @@ const Advertisement = ({ advertisement }) => {
     const { brandName, model, resellPrice } = advertisement;
 
     const handleAdsBuyNow = () => {
-        fetch('http://localhost:5000/orders/ads', {
+        fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/orders/ads', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

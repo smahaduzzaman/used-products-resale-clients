@@ -6,7 +6,7 @@ const ViewAllCars = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/viewallcars')
+        fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/viewallcars')
             .then(res => res.json())
             .then(data => setCars(data))
     }, [])

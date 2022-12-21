@@ -14,19 +14,19 @@ const Cars = () => {
     const { data: cars = [], refetch, isLoading } = useQuery({
         queryKey: 'cars',
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/cars`);
+            const { data } = await axios.get(`https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars`);
             return data;
         }
     });
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
 
     const handleSearchCatCar = (id) => {
-        fetch(`http://localhost:5000/category/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,12 +54,12 @@ const Cars = () => {
                 <div className="grid grid-cols-5 p-4 md:p-8">
                     <div className="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start">
                         {
-                            // categories.map(ctg => <Link onClick={() => handleSearchCatCar()} to="" className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400">{ctg.name}</Link>)
-                            categories.map(ctg => <Link to={`/category/${ctg._id}`} className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400">{ctg.name}</Link>)
+                            // {`/category/${ctg._id}`}
+                            categories.map(ctg => <Link to={`/category/${ctg._id}`} className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400" target="_blank">{ctg.name}</Link>)
                         }
                     </div>
                     <div className="grid gap-12 py-4 text-center sm:grid-cols-1 col-span-full md:col-span-4 md:text-left">
-                        <h2>Total Cars: {cars.length}</h2>
+                        <h2 className='text-2xl'>Our Exclusive Cars</h2>
                         {
                             cars.map((car) => <Car
                                 key={car._id}
