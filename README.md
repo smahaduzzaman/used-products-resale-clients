@@ -1,6 +1,6 @@
 Site Name: Xclusive Cars
 - Live Sit Url: https://xclusive-cars.web.app
-- Vercel Live: https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app
+- Vercel Live:http://localhost:5000
 - GitHub Client Side Repo: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-smahaduzzaman
 - GitHub Server Repo: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-smahaduzzaman
 

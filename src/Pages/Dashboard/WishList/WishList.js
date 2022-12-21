@@ -8,7 +8,7 @@ const WishList = () => {
     const { brandName, model, resellPrice, description } = wishList;
 
     useEffect(() => {
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist')
+        fetch('http://localhost:5000/wishlist')
             .then(res => res.json())
             .then(data => setWishList(data))
     }, [])
@@ -16,14 +16,14 @@ const WishList = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users');
+            const res = await fetch('http://localhost:5000/users');
             const data = await res.json();
             return data;
         }
     });
 
     const handeDeleteWishList = (id) => {
-        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist/${id}`, {
+        fetch(`http://localhost:5000/wishlist/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`

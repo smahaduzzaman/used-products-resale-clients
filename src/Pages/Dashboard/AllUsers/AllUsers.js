@@ -6,14 +6,14 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users');
+            const res = await fetch('http://localhost:5000/users');
             const data = await res.json();
             return data;
         }
     });
 
     const handleMakeAdmin = (id) => {
-        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/admin/${id}`, {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ const AllUsers = () => {
     }
 
     const handleUserDelete = (id) => {
-        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`

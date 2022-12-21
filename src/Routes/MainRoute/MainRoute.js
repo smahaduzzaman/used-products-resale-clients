@@ -47,13 +47,14 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <PrivateRoute><Category></Category></PrivateRoute>,
-                loader: ({ params }) => fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category/${params.id}`)
+                element: <Category></Category>,
+                // element: <PrivateRoute><Category></Category></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
             },
             {
                 path: '/cars/:id',
                 element: <Cars></Cars>,
-                loader: ({ params }) => fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/cars/${params.id}`)
             },
             {
                 path: '/viewallcars',
@@ -68,12 +69,14 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        element: <DashboardLayout></DashboardLayout>,
+        // element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
-                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+                element: <MyOrders></MyOrders>,
+                // element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
             {
                 path: '/dashboard/allusers',
@@ -93,20 +96,23 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addcar',
-                element: <SellerRoute><AddCar></AddCar></SellerRoute>
+                element: <AddCar></AddCar>
+                // element: <SellerRoute><AddCar></AddCar></SellerRoute>
             },
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/orders/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
             },
             {
                 path: '/dashboard/wishlist',
-                element: <BuyerRoute><WishList></WishList></BuyerRoute>
+                element: <WishList></WishList>
+                // element: <BuyerRoute><WishList></WishList></BuyerRoute>
             },
             {
                 path: '/dashboard/mybuyers',
-                element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
+                element: <MyBuyers></MyBuyers>
+                // element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
             },
             {
                 path: '/dashboard/reporteditems',
@@ -114,7 +120,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myproducts',
-                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+                element: <MyProducts></MyProducts>
+                // element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             }
         ]
     }

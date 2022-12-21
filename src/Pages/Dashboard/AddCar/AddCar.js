@@ -29,7 +29,7 @@ const AddCar = () => {
             description
         }
 
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars', {
+        fetch('http://localhost:5000/cars', {
             method: 'POST',
             body: addCarInfo
             // var data = JSON.parse(response);

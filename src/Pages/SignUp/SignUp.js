@@ -54,7 +54,7 @@ const SignUp = () => {
 
     const saveUserToDatabase = (name, email, phone, role) => {
         const user = { name, email, phone, role };
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,17 +73,17 @@ const SignUp = () => {
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content w-2/3">
-                <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
+                <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 text-black">
                     <h1 className="text-2xl font-bold text-center">Sign Up</h1>
                     <form onSubmit={handleSignUp} novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                         <div className="space-y-1 text-sm">
-                            <input type="text" name="name" id="name" placeholder="Enter Your Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="text" name="name" id="name" placeholder="Enter Your Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="phone" name="phone" id="phone" placeholder="Enter Phone No" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="phone" name="phone" id="phone" placeholder="Enter Phone No" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         </div>
                         <select
                             name="role"
@@ -97,7 +97,7 @@ const SignUp = () => {
                             >Seller</option>
                         </select>
                         <div className="space-y-1 text-sm">
-                            <input type="password" name="password" id="password" placeholder="Create a Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="password" name="password" id="password" placeholder="Create a Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         </div>
                         <div>
                             {
@@ -107,7 +107,7 @@ const SignUp = () => {
                         <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign Up</button>
                     </form>
                     <p className="text-xs text-center sm:px-6 dark:text-gray-400">Already have an account?
-                        <Link to="/login" rel="noopener noreferrer" href="#" className="underline dark:text-gray-100 ml-3">Login</Link>
+                        <Link to="/login" rel="noopener noreferrer" href="#" className="underline text-black ml-3">Login</Link>
                     </p>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

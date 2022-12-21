@@ -7,9 +7,9 @@ const Category = () => {
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        axios.get(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars')
+        axios.get('http://localhost:5000/cars')
             .then(res => setCars(res.data))
-        axios.get(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category')
+        axios.get('http://localhost:5000/category')
             .then(res => setCategory(res.data))
     }, [])
 

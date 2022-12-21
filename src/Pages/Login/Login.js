@@ -78,13 +78,13 @@ const Login = () => {
                     <h1 className="text-2xl font-bold text-center">Login</h1>
                     <form onSubmit={handleLogin} novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                         <div className="space-y-1 text-sm">
-                            <input type="text" name="name" id="name" placeholder="Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="text" name="name" id="name" placeholder="Name" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="email" name="email" id="email" placeholder="Enter Email" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                         </div>
                         <div className="space-y-1 text-sm">
-                            <input type="password" name="password" id="password" placeholder="Enter Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                            <input type="password" name="password" id="password" placeholder="Enter Password" className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-black focus:dark:border-violet-400" />
                             <div className="flex justify-end text-xs dark:text-gray-400">
                                 <Link rel="noopener noreferrer" to="/signup">Forgot Password?</Link>
                             </div>
@@ -98,7 +98,7 @@ const Login = () => {
                     </form>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-                        <p className="px-3 text-sm dark:text-gray-400">Login with social accounts</p>
+                        <p className="px-3 text-sm dark:text-gray-400">Login with social accounts</p>gray-100
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
                     </div>
                     <div className="flex justify-center space-x-4">

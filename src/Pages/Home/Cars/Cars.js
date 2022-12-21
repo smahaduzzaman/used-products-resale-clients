@@ -14,19 +14,19 @@ const Cars = () => {
     const { data: cars = [], refetch, isLoading } = useQuery({
         queryKey: 'cars',
         queryFn: async () => {
-            const { data } = await axios.get(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars`);
+            const { data } = await axios.get(`http://localhost:5000/cars`);
             return data;
         }
     });
 
     useEffect(() => {
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/categories')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
 
     const handleSearchCatCar = (id) => {
-        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/category/${id}`, {
+        fetch(`http://localhost:5000/category/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

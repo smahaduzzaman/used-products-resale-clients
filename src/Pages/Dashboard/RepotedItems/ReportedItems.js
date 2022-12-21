@@ -8,7 +8,7 @@ const ReportedItems = () => {
     const { brandName, model, resellPrice, description } = reportedItems;
 
     useEffect(() => {
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/reportlist')
+        fetch('http://localhost:5000/reportlist')
             .then(res => res.json())
             .then(data => setReportedItems(data))
     }, [])
@@ -16,7 +16,7 @@ const ReportedItems = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/users');
+            const res = await fetch('http://localhost:5000/users');
             const data = await res.json();
             return data;
         }
@@ -24,7 +24,7 @@ const ReportedItems = () => {
 
 
     const handleDeleteReportedItem = (id) => {
-        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/reportlist/${id}`, {
+        fetch(`http://localhost:5000/reportlist/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`

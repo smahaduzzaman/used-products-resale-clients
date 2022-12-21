@@ -47,7 +47,7 @@ const Navbar = () => {
                                 {listItems}
                             </ul>
                         </li>
-                        <li><Link to="/blog">Blog</Link></li>
+                        <li><Link to="/blog" target="_blank">Blog</Link></li>
                     </ul>
                 </div>
                 <Link to="/" className="btn btn-ghost normal-case text-xl lg:text-3xl"><span className='text-indigo-600 mr-2'>Xclusive</span> Cars</Link>
@@ -64,7 +64,7 @@ const Navbar = () => {
                             {listItems}
                         </ul>
                     </li>
-                    <li><Link to="/blog">Blog</Link></li>
+                    <li><Link to="/blog" target="_blank">Blog</Link></li>
                 </ul>
             </div>
             <div className="navbar-end flex flex-col lg:flex-row pl-16">

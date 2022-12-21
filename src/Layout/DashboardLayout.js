@@ -29,7 +29,7 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {
-                            isBuyer &&
+                            // isBuyer &&
                             <>
                                 <li><Link to="/dashboard">My Orders</Link></li>
                                 <li><Link to="/dashboard/wishlist">Wishlist</Link></li>
@@ -37,7 +37,7 @@ const DashboardLayout = () => {
                         }
 
                         {
-                            isSeller &&
+                            // isSeller &&
                             <>
                                 <li><Link to="/dashboard/allcars">All Cars</Link></li>
                                 <li><Link to="/dashboard/addcar">Add Car</Link></li>

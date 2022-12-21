@@ -9,14 +9,14 @@ const AllCars = () => {
         ({
             queryKey: ['users'],
             queryFn: async () => {
-                const res = await fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars');
+                const res = await fetch('http://localhost:5000/cars');
                 const data = await res.json();
                 return data;
             }
         });
 
     useEffect(() => {
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars/allcars')
+        fetch('http://localhost:5000/cars/allcars')
             .then(res => res.json())
             .then(data => setAllCars(data))
     }, [])
@@ -28,7 +28,7 @@ const AllCars = () => {
     ) => {
 
 
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/ads', {
+        fetch('http://localhost:5000/ads', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -47,7 +47,7 @@ const AllCars = () => {
     }
 
     const handleDeleteCar = (id) => {
-        fetch(` https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/cars/${id}`, {
+        fetch(`http://localhost:5000/cars/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('token')}`

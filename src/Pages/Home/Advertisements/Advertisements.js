@@ -4,7 +4,7 @@ import Advertisement from './Advertisement';
 const Advertisements = () => {
     const [advertisements, setAdvertisements] = useState([]);
     useEffect(() => {
-        fetch(' https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/ads')
+        fetch('http://localhost:5000/ads')
             .then(res => res.json())
             .then(data => setAdvertisements(data))
     }, [])
