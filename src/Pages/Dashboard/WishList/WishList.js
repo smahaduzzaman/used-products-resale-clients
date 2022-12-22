@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 const WishList = () => {
     const [wishList, setWishList] = useState([]);
-    const { brandName, model, resellPrice, description } = wishList;
 
     useEffect(() => {
         fetch('https://b612-used-products-resale-server-side-smahaduzzaman.vercel.app/wishlist')
@@ -48,7 +47,7 @@ const WishList = () => {
                             <th>SL.</th>
                             <th>Brand Name</th>
                             <th>Model</th>
-                            <th>Description</th>
+                            {/* <th>Description</th> */}
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -59,7 +58,7 @@ const WishList = () => {
                                 <th>{index + 1}</th>
                                 <td>{wish.brandName}</td>
                                 <td>{wish.model}</td>
-                                <td>{wish.description.slice(0, 20)}...</td>
+                                {/* <td>{wish.description.slice(0, 20)}</td> */}
                                 <td>{wish.resellPrice}</td>
                                 <td>
                                     {

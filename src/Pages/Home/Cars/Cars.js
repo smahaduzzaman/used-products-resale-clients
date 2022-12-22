@@ -55,7 +55,7 @@ const Cars = () => {
                     <div className="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start">
                         {
                             // {`/category/${ctg._id}`}
-                            categories.map(ctg => <Link to={`/category/${ctg._id}`} className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400" target="_blank">{ctg.name}</Link>)
+                            categories.map(ctg => <Link to={`/category/${ctg._id}`} className="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 dark:border-gray-300 dark:text-gray-400">{ctg.name}</Link>)
                         }
                     </div>
                     <div className="grid gap-12 py-4 text-center sm:grid-cols-1 col-span-full md:col-span-4 md:text-left">
